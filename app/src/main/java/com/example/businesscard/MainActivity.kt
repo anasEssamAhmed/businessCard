@@ -21,10 +21,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.businesscard.ui.theme.BusinessCardTheme
+import com.example.businesscard.ui.theme.myColor
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color(0xFFECECEC)
                 ) {
+                    BodyOfBusinessCard("Anas Ahmed", "Android Developer")
+                    ImageWithText()
                 }
             }
         }
@@ -43,7 +47,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun bodyOfBusinessCard(name: String, work: String, modifier: Modifier = Modifier) {
+fun BodyOfBusinessCard(name: String, work: String, modifier: Modifier = Modifier) {
     val image = painterResource(R.drawable.lego)
     Column(
         verticalArrangement = Arrangement.Center,
@@ -54,6 +58,7 @@ fun bodyOfBusinessCard(name: String, work: String, modifier: Modifier = Modifier
             painter = image,
             contentDescription = null,
             modifier = Modifier.padding(start = 100.dp, end = 100.dp)
+                .size(50.dp)
         )
         Text(
             text = name,
@@ -66,7 +71,7 @@ fun bodyOfBusinessCard(name: String, work: String, modifier: Modifier = Modifier
             fontSize = 25.sp,
             fontFamily = FontFamily.SansSerif,
             modifier = Modifier.padding(top = 5.dp),
-            style = TextStyle(color = Color(0xFF2E8B57))
+            style = TextStyle(color = myColor)
         )
     }
 
@@ -97,7 +102,7 @@ fun ImageWithText() {
                 )
                 Text(
                     text = "0567658945",
-                    modifier = Modifier.padding(start = 10.dp)
+                    modifier = Modifier.padding(start = 10.dp),
                 )
             }
             Row(
@@ -116,7 +121,7 @@ fun ImageWithText() {
             }
             Row(
                 verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.Center,
+                horizontalArrangement = Arrangement.SpaceAround,
             ) {
                 Image(
                     painter = emailImage,
@@ -137,7 +142,7 @@ fun ImageWithText() {
 @Composable
 fun GreetingPreview() {
     BusinessCardTheme {
-        bodyOfBusinessCard("Anas Ahmed", "Android Developer")
+        BodyOfBusinessCard("Anas Ahmed", "Android Developer")
         ImageWithText()
     }
 }
